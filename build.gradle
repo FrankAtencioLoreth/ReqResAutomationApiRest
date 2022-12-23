@@ -1,5 +1,6 @@
 plugins {
     id 'java'
+    id 'io.qameta.allure' version '2.9.6'
 }
 
 group 'org.example'
@@ -18,12 +19,13 @@ ext {
     jsonVersion = '20220924'
     jsonschemavalidatorVersion = '3.0.0'
     tesultsVersion = '1.0.2'
+    allureVersion = '2.20.0'
+    aspectjweaverVersion = '1.9.9.1'
 }
 
 dependencies {
     testImplementation "org.junit.jupiter:junit-jupiter-api:$rootProject.ext.jupiterVersion"
     testImplementation "junit:junit:$rootProject.ext.jUnitVersion"
-    testImplementation 'junit:junit:4.13.1'
     testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$rootProject.ext.jUnitVersion"
     testRuntimeOnly "org.junit.vintage:junit-vintage-engine:$rootProject.ext.jUnitVersion"
     implementation "org.slf4j:slf4j-simple:$rootProject.ext.slf4jVersion"
@@ -33,7 +35,12 @@ dependencies {
     implementation group: 'org.json', name: 'json', version: "$rootProject.ext.jsonVersion"
     implementation group: 'io.rest-assured', name: 'json-schema-validator', version: "$rootProject.ext.jsonschemavalidatorVersion"
 
-
+    implementation "io.qameta.allure:allure-junit5:$rootProject.ext.allureVersion"
+    implementation "io.qameta.allure:allure-commandline:$rootProject.ext.allureVersion"
+    implementation "io.qameta.allure:allure-assertj:$rootProject.ext.allureVersion"
+    implementation "io.qameta.allure:allure-rest-assured:$rootProject.ext.allureVersion"
+    implementation "io.qameta.allure:allure-java-commons:$rootProject.ext.allureVersion"
+    implementation "org.aspectj:aspectjweaver:$rootProject.ext.aspectjweaverVersion"
 }
 
 test {
