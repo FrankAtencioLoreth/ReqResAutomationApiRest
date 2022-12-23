@@ -1,2 +1,3 @@
-package PACKAGE_NAME;public class ReqResRegisterUserTest {
+public class ReqResRegisterUserTest {
+    //TODO: Terminar esta seccion
 }
