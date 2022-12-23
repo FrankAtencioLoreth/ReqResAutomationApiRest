@@ -5,4 +5,5 @@ Librerias utilizadas
 
 JUnit<br>
 RestAssured<br>
-Hamcrest
+Hamcrest<br>
+Allure Reporting
