@@ -1,3 +1,4 @@
+import io.qameta.allure.Feature;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.RequestLoggingFilter;
@@ -15,6 +16,7 @@ import static org.hamcrest.Matchers.notNullValue;
 import static org.hamcrest.Matchers.instanceOf;
 import static org.hamcrest.Matchers.equalTo;
 
+@Feature("Register a User")
 public class ReqResRegisterUserTest {
 
     private JSONObject jsonObject;

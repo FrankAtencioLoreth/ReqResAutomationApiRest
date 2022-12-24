@@ -1,3 +1,6 @@
+import io.qameta.allure.Feature;
+import io.qameta.allure.Severity;;
+import io.qameta.allure.SeverityLevel;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.RequestLoggingFilter;
@@ -15,7 +18,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.notNullValue;
 
-
+@Feature("Login User")
 public class ReqResLoginTest {
 
     private JSONObject jsonObject;
@@ -32,6 +35,7 @@ public class ReqResLoginTest {
     }
 
     @Test
+    @Severity(SeverityLevel.CRITICAL)
     @DisplayName("Test Login Correcto")
     public void loginSuccessful() {
         given().
@@ -43,6 +47,7 @@ public class ReqResLoginTest {
     }
 
     @Test
+    @Severity(SeverityLevel.CRITICAL)
     @DisplayName("Test Login Correcto Validar Campos")
     public void validateFieldsloginSuccessful() {
         this.jsonObject.put("email", "eve.holt@reqres.in");
@@ -57,6 +62,7 @@ public class ReqResLoginTest {
     }
 
     @Test
+    @Severity(SeverityLevel.TRIVIAL)
     @DisplayName("Test Login Correcto Validar Esquema")
     public void validateSchemaLoginSuceesful() {
         this.jsonObject.put("email", "eve.holt@reqres.in");
@@ -80,6 +86,7 @@ public class ReqResLoginTest {
     }
 
     @Test
+    @Severity(SeverityLevel.NORMAL)
     @DisplayName("Test Login Incorrecto")
     public void loginUnSuceesful() {
         this.jsonObject.put("email", "eve.holt@reqres.in");
@@ -93,6 +100,7 @@ public class ReqResLoginTest {
     }
 
     @Test
+    @Severity(SeverityLevel.NORMAL)
     @DisplayName("Test Login Incorrecto Contraseña Validar Campos")
     public void validateFieldsloginUnSuccessfulPassword() {
         this.jsonObject.put("email", "eve.holt@reqres.in");
@@ -106,6 +114,7 @@ public class ReqResLoginTest {
     }
 
     @Test
+    @Severity(SeverityLevel.NORMAL)
     @DisplayName("Test Login Incorrecto Email Validar Campos")
     public void validateFieldsloginUnSuccessfulEmail() {
         this.jsonObject.put("password", "cityslicka");
@@ -119,6 +128,7 @@ public class ReqResLoginTest {
     }
 
     @Test
+    @Severity(SeverityLevel.NORMAL)
     @DisplayName("Test Login Incorrecto Validar Esquema")
     public void validateSchemaLoginSuccessful() {
         this.jsonObject.put("email", "eve.holt@reqres.in");

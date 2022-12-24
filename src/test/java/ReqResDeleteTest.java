@@ -1,3 +1,4 @@
+import io.qameta.allure.Feature;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.filter.log.RequestLoggingFilter;
@@ -11,6 +12,7 @@ import org.junit.Test;
 
 import static io.restassured.RestAssured.given;
 
+@Feature("Delete a User")
 public class ReqResDeleteTest {
 
     private JSONObject jsonObject;

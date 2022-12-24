@@ -10,6 +10,11 @@ repositories {
     mavenCentral()
 }
 
+task testSuite(type: Test) {
+    include 'Runner.class'
+}
+
+
 ext {
     jupiterVersion = '5.9.0'
     jUnitVersion = '4.13.1'
@@ -23,11 +28,17 @@ ext {
     aspectjweaverVersion = '1.9.9.1'
 }
 
+allure {
+    version = "$rootProject.ext.allureVersion"
+    autoconfigure = true
+    aspectjweaver = true
+}
+
 dependencies {
     testImplementation "org.junit.jupiter:junit-jupiter-api:$rootProject.ext.jupiterVersion"
     testImplementation "junit:junit:$rootProject.ext.jUnitVersion"
-    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$rootProject.ext.jUnitVersion"
-    testRuntimeOnly "org.junit.vintage:junit-vintage-engine:$rootProject.ext.jUnitVersion"
+    testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$rootProject.ext.jupiterVersion"
+    testRuntimeOnly "org.junit.vintage:junit-vintage-engine:$rootProject.ext.jupiterVersion"
     implementation "org.slf4j:slf4j-simple:$rootProject.ext.slf4jVersion"
     implementation "com.tesults:tesults:$rootProject.ext.tesultsVersion"
     implementation group: 'io.rest-assured', name: 'rest-assured', version: "$rootProject.ext.restAssuredVersion"

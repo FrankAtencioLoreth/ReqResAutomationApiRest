@@ -1,7 +1,9 @@
+import org.junit.Ignore;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
+@Ignore
 @RunWith(Suite.class)
 @SuiteClasses({
         ReqResLoginTest.class,
@@ -13,4 +15,9 @@ import org.junit.runners.Suite.SuiteClasses;
         ReqResDeleteTest.class
 })
 public class Runner {
+    /**
+     *  COMMAND LINE (GRADLE TASK)
+     *  ./gradlew testSuite
+     *  ./gradlew allureServe
+     */
 }
