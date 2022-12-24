@@ -10,10 +10,6 @@ repositories {
     mavenCentral()
 }
 
-task testSuite(type: Test) {
-    include 'Runner.class'
-}
-
 
 ext {
     jupiterVersion = '5.9.0'
@@ -45,7 +41,6 @@ dependencies {
     implementation group: 'org.hamcrest', name: 'hamcrest-all', version: "$rootProject.ext.hamcrestVersion"
     implementation group: 'org.json', name: 'json', version: "$rootProject.ext.jsonVersion"
     implementation group: 'io.rest-assured', name: 'json-schema-validator', version: "$rootProject.ext.jsonschemavalidatorVersion"
-
     implementation "io.qameta.allure:allure-junit5:$rootProject.ext.allureVersion"
     implementation "io.qameta.allure:allure-commandline:$rootProject.ext.allureVersion"
     implementation "io.qameta.allure:allure-assertj:$rootProject.ext.allureVersion"
@@ -56,4 +51,23 @@ dependencies {
 
 test {
     useJUnitPlatform()
+
+    testLogging {
+        events "passed", "skipped", "failed"
+        showStandardStreams = true
+    }
+
+    systemProperties System.properties
+
+    filter {
+        /**
+         * Filtramos los test solo para ejecutar el RunnerSuite
+         * Correr en consola:
+         * -> gradle clean test #Ejecuta el suitest
+         * -> gradle allureServe #Ejecuta el reporte
+         **/
+        excludeTestsMatching "testSuites.*"
+        //excludeTestsMatching "*.testName" Exclude una Suite
+        //excludeTestsMatching "*.testName.nombreMetodo" Exclude un metodo de una Suite
+    }
 }

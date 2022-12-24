@@ -1,3 +1,5 @@
+package testSuites;
+
 import io.qameta.allure.Feature;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;

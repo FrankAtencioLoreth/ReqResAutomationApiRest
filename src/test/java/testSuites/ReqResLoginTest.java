@@ -1,3 +1,5 @@
+package testSuites;
+
 import io.qameta.allure.Feature;
 import io.qameta.allure.Severity;;
 import io.qameta.allure.SeverityLevel;
@@ -7,6 +9,7 @@ import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.http.ContentType;
 import io.restassured.module.jsv.JsonSchemaValidator;
+import io.restassured.response.Response;
 import org.apache.http.HttpStatus;
 import org.json.JSONObject;
 import org.junit.Before;
@@ -39,11 +42,18 @@ public class ReqResLoginTest {
     @DisplayName("Test Login Correcto")
     public void loginSuccessful() {
         given().
-        body(new File("src/test/json/dataLogin.json")).
+        body(new File("src/test/resources/json/dataLogin.json")).
         post("login").
         then().
         statusCode(HttpStatus.SC_OK).
         body("token", notNullValue());
+
+        //Get token
+        Response body = given().
+                body(new File("src/test/resources/json/dataLogin.json")).
+                post("login");
+        String token = body.path("token").toString();
+        System.out.println("TOKEN = " + token);
     }
 
     @Test
@@ -77,7 +87,7 @@ public class ReqResLoginTest {
             body(
                 JsonSchemaValidator.
                     matchesJsonSchema(
-                            new File("src/test/json/loginSuccessful.json")
+                            new File("src/test/resources/json/loginSuccessful.json")
                     )
             );
         }catch (Exception e) {
@@ -142,7 +152,7 @@ public class ReqResLoginTest {
             body(
                 JsonSchemaValidator.
                     matchesJsonSchema(
-                            new File("src/test/json/loginUnSuccessful.json")
+                            new File("src/test/resources/json/loginUnSuccessful.json")
                     )
             );
         }catch (Exception e) {

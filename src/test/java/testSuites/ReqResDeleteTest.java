@@ -1,3 +1,5 @@
+package testSuites;
+
 import io.qameta.allure.Feature;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
@@ -11,11 +13,9 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.Test;
 
 import static io.restassured.RestAssured.given;
-import static org.hamcrest.CoreMatchers.instanceOf;
-import static org.hamcrest.core.Is.is;
 
-@Feature("Get all Users")
-public class ReqResAllUsersTest {
+@Feature("Delete a User")
+public class ReqResDeleteTest {
 
     private JSONObject jsonObject;
 
@@ -31,27 +31,11 @@ public class ReqResAllUsersTest {
     }
 
     @Test
-    @DisplayName("Test obtener todos los usuarios")
-    public void getAllUsers() {
+    @DisplayName("Test Eliminar usuario")
+    public void deleteUserTest() {
         given().
-        body(this.jsonObject.toString()).
-        get("unknown").
+        delete("users/1").
         then().
-        statusCode(HttpStatus.SC_OK);
-    }
-
-    @Test
-    @DisplayName("Test obtener todos los usuarios validar campos")
-    public void getAllUsersValidateFields() {
-        given().
-        body(this.jsonObject.toString()).
-        get("unknown").
-        then().
-        statusCode(HttpStatus.SC_OK).
-        body("page", is(instanceOf(Integer.class))).
-        body("per_page", is(instanceOf(Integer.class))).
-        body("total", is(instanceOf(Integer.class))).
-        body("total_pages", is(instanceOf(Integer.class))).
-        body("data", is(instanceOf(Object.class)));
+        statusCode(HttpStatus.SC_NO_CONTENT);
     }
 }

@@ -1,3 +1,5 @@
+package testSuites;
+
 import io.qameta.allure.Feature;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
@@ -80,7 +82,7 @@ public class ReqResSingleUserTest {
             body(
                 JsonSchemaValidator.
                     matchesJsonSchema(
-                            new File("src/test/json/singleUser.json")
+                            new File("src/test/resources/json/singleUser.json")
                     )
             );
         }catch (Exception e) {
@@ -99,7 +101,7 @@ public class ReqResSingleUserTest {
             body(
                 JsonSchemaValidator.
                     matchesJsonSchema(
-                            new File("src/test/json/empty.json")
+                            new File("src/test/resources/json/empty.json")
                     )
             );
         }catch (Exception e) {
